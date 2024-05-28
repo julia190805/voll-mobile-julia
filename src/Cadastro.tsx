@@ -67,7 +67,7 @@ export default function Cadastro({ navigation }: any) {
       },
       senha: dados.senha,
       telefone: dados.telefone,
-      possuiPlanoSaude: planos.length < 0,
+      possuiPlanoSaude: planos.length > 0,
       planosSaude: planos,
       imagem: dados.imagem
     })
