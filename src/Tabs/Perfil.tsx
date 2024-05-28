@@ -26,12 +26,12 @@ export default function Perfil() {
       <VStack flex={1} alignItems="center" p={5}>
         <Titulo color="blue.500">Meu Perfil</Titulo>
 
-        <Avatar size="xl" source={{ uri: "https://github.com/robertoSRMJunior.png" }} mt={5} />
+        <Avatar size="xl" source={{ uri: dadosPaciente.imagem }} mt={5} />
 
         <Titulo color="blue.500">Informações pessoais</Titulo>
         <Titulo fontSize="lg" mb={1}>{dadosPaciente.nome}</Titulo>
-        <Text>01/04/1988</Text>
-        <Text>São Paulo</Text>
+        <Text>{dadosPaciente.email}</Text>
+        <Text>dadosPaciente.endereco.estado</Text>
 
         <Divider mt={5} />
 
