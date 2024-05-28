@@ -71,7 +71,7 @@ export default function Cadastro({ navigation }: any) {
       planosSaude: planos,
       imagem: dados.imagem
     })
-    if (resultado !== '' && planos.length) {
+    if (resultado !== '' && planos.length > 0) {
       toast.show({
         title: 'Cadastro realizado com sucesso',
         description: 'Você já pode fazer login',
