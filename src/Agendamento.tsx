@@ -1,44 +1,46 @@
 import { Input, VStack, useToast } from "native-base";
 import { useState } from "react";
 import { Botao } from "./componentes/Botao";
-import { agendarConsulta } from "./servicos/ConsultaServicos";
+import { agendarConsulta } from "./servicos/ConsultaServico";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {converterStringParaData} from './utils/conversoes';
+import { converterStringParaData } from './utils/conversoes';
 
 export default function Agendamento({ route, navigation }: any) {
-    const [data, setData] = useState('')
-    const toast = useToast()
+    const [data, setData] = useState('');
+    const toast = useToast();
 
-    async function agendar(){
-        const pacienteId = await AsyncStorage.getItem('pacienteId')
-        const {especialistaId} = route.params 
-        if(!pacienteId || !especialistaId || !data) return
-        const dataFormatada = converterStringParaData(data)
-        const resultado = await agendarConsulta(dataFormatada, especialistaId, pacienteId)
-        if(resultado){
+    async function agendar() {
+        const pacieteId = await AsyncStorage.getItem('pacienteId');
+        const { especialistaId } = route.params
+        if (!pacieteId || !especialistaId || !data) return
+        const dataFormatada = converterStringParaData(data);
+        const resultado = await agendarConsulta(dataFormatada, especialistaId, pacieteId)
+        if (resultado) {
             toast.show({
-                title:'Consulta agendada com sucesso',
-                backgroundColor: 'gray.500',
+                title: 'Consulta agendada com sucesso!',
+                backgroundColor: 'green.500'
             })
-            return navigation.goBack()
+            return navigation.goBack();
         }
         toast.show({
             title: 'Erro ao agendar consulta',
             description: 'Horário indisponível',
-            backgroundColor: 'red.500',
+            backgroundColor: 'red.500'
         })
+
     }
 
-    return(
-        <VStack flex={1} alignItems="center" justifyContent="center" padding={5}>
-            <Input
-            placeholder="Digite a data"
-            onChangeText={setData}
-            />
+    function voltarSecao() {
+       navigation.replace('Login')
+      }
 
-            <Botao onPress={agendar}>
-                Agendar
-            </Botao>
+    return (
+        <VStack flex={1} alignItems="center" justifyContent="center" padding={5}>
+            <Input placeholder="Digite a data 10/05/2024 12:23" onChangeText={setData} />
+            <Botao onPress={agendar}>Agendar</Botao>
+            <Botao onPress={() => voltarSecao()} bgColor="gray.400">Voltar</Botao>
         </VStack>
+          
     )
+    
 }

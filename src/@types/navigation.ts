@@ -1,7 +1,6 @@
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-
 export type ListaTelas = {
     Login: undefined;
     Cadastro: undefined;
@@ -10,10 +9,10 @@ export type ListaTelas = {
     Consultas: undefined;
     Principal: undefined;
     Tabs: undefined;
-    Agendamento: {especialistaId: string}
+    Agendamento: { especialistaId: string }
 }
 
-export type NavigationProps< T extends keyof ListaTelas > = {
+export type NavigationProps<T extends keyof ListaTelas> = {
     navigation: NativeStackNavigationProp<ListaTelas, T>;
-    route: RouteProp<ListaTelas, T>
+    route: RouteProp<ListaTelas, T>;
 }
